@@ -127,7 +127,9 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Choose z := (12).
+* Indeed, (z > 10).
+* We conclude that (z < 14).
 ```
 </input-area>
 ```coq
@@ -160,7 +162,11 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take x > 3.
+Take y ≥ 4.
+Choose z := (x + y + 1).
+* Indeed, (z ∈ ℝ).
+* We conclude that (x < z - y).
 ```
 </input-area>
 ```coq
@@ -199,7 +205,11 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take a ≥ (2).
+Take b ∈ (ℝ).
+Assume that (a > 0).
+Assume that (b > 0).
+We conclude that (a + b > -1).
 ```
 </input-area>
 ```coq
@@ -227,7 +237,8 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Assume that (f(3) < 5).
+By (f_increasing) we conclude that (& 5 > f(3) ≥ f(-1)).
 ```
 </input-area>
 ```coq
@@ -253,7 +264,9 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Assume that (4 > f(5)).
+It suffices to show that (f(5) ≥ f(-2)).
+By (f_increasing) we conclude that (f(5) ≥ f(-2)).
 ```
 </input-area>
 ```coq
@@ -278,7 +291,9 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Assume that (f(7) < 8).
+By f_increasing it holds that (f(7) ≥ f(3)).
+We conclude that (f(3) ≤ 10).
 ```
 </input-area>
 ```coq
@@ -315,7 +330,12 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take x ∈ (ℝ).
+Assume that (∀ ε > 0, x < ε) (i).
+Use ε := (0.01) in (i).
+* Indeed, (0.01 > 0).
+* It holds that (x < 0.01).
+  We conclude that (10 * x < 1).
 ```
 </input-area>
 ```coq
@@ -359,7 +379,10 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take z ∈ (ℝ).
+Assume that (∃ x ≥ 5, x^2 < z) (i).
+Obtain x according to (i).
+We conclude that (25 < z).
 ```
 </input-area>
 ```coq
@@ -393,7 +416,14 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take x ∈ (ℝ).
+Assume that (∀ ε > 0, x < ε) (i).
+We need to show that (x <= 0).
+We argue by contradiction.
+Assume that (¬ (x <= 0)).
+It holds that (x > 0).
+By (i) it holds that (x > x).
+Contradiction.
 ```
 </input-area>
 ```coq
@@ -429,7 +459,15 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take x ∈ (ℝ).
+Take y ∈ (ℝ).
+Either (x < y) or (y <= x).
+- Case (x < y).
+  It suffices to show that (min(x,y) = x).
+  We conclude that (min(x,y)=x).
+- Case (y <= x).
+  It suffices to show that (min(x,y) = y).
+  We conclude that (min(x,y)=y).
 ```
 </input-area>
 ```coq
@@ -457,7 +495,12 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take x ∈ (ℝ).
+We show both statements.
+* We need to show that (0 * x = 0).
+  We conclude that (0 * x = 0).
+* We need to show that (x + 1 > x).
+  We conclude that (x + 1 > x).
 ```
 </input-area>
 ```coq
@@ -489,7 +532,14 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take x ∈ (ℝ).
+We show both directions.
+++ We need to show that (x > 1 ⇒ x - 1 > 0).
+  Assume that (x > 1).
+  We conclude that (x - 1 > 0).
+++ We need to show that (x - 1 > 0 ⇒ x > 1).
+  Assume that (x - 1 > 0).
+  We conclude that (x > 1).
 ```
 </input-area>
 ```coq
@@ -524,7 +574,17 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take F : (ℕ → ℕ).
+Assume that (∀ k ∈ ℕ, F(k+1) = (F(k)))%nat.
+We use induction on k.
++ We first show the base case (F(0) = F(0))%nat.
+  We conclude that (F(0) = F(0))%nat.
++ We now show the induction step.
+  Take k ∈ (ℕ).
+  Assume that (F(k) = F(0))%nat.
+  It holds that (F(k+1) = F(k))%nat.
+  It holds that (F(k+1) = F(0))%nat.
+  We conclude that (& F(k+1) = F(k) = F(0))%nat.
 ```
 </input-area>
 ```coq
@@ -557,7 +617,8 @@ Proof.
 ```
 <input-area>
 ```coq
-
+Take x ∈ (ℝ). We need to show that (-(x^2)<=0).
+We conclude that (-(x^2)<=0).
 ```
 </input-area>
 ```coq
