@@ -91,8 +91,10 @@ Proof.
 ```coq
 Take x ∈ (X).
 Take y ∈ (X).
+
 We need to show that (d(x,y) >= 0).
 By (dist_positive Y) it holds that (d(x,y) >= 0).
+
 We conclude that (d(x,y)>=0).
 ```
 </input-area>
@@ -108,10 +110,13 @@ Proof.
 ```coq
 Take x ∈ (X).
 Take y ∈ (X).
+
 We need to show that (d(x,y) = 0 ⇒ x = y).
 Assume that (d(x,y)=0).
-By (dist_non_degenerate Y) it holds that (x=y).
-We conclude that (d(x,y)=0⇒x=y).
+It holds that (d(x,y) = dist_Y(f(x),f(y))).
+By (dist_non_degenerate Y) it holds that (f(x) = f(y)).
+
+We conclude that (x = y).
 ```
 
 ```coq
@@ -128,7 +133,14 @@ Proof.
 ```
 <input-area>
 ```coq
+Take x ∈ (X).
+Take y ∈ (X).
 
+It holds that (d(x, y) = dist_Y(f(x), f(y))).
+By (dist_symmetric Y) it holds that (dist_Y(f(x),f(y)) = dist_Y(f(y),f(x))).
+It holds that (dist_Y(f(y),f(x)) = d(y,x)).
+
+We conclude that (d(x,y) = d(y,x)).
 ```
 </input-area>
 ```coq
@@ -142,7 +154,16 @@ Proof.
 ```
 <input-area>
 ```coq
+Take x ∈ (X).
+Take y ∈ (X).
+Take z ∈ (X).
 
+It holds that (d(x, z) = dist_Y(f(x), f(z))).
+By (dist_triangle_inequality Y) it holds that (
+  dist_Y(f(x),f(z)) ≤ dist_Y(f(x),f(y)) + dist_Y(f(y),f(z))).
+It holds that (dist_Y(f(x),f(y)) + dist_Y(f(y),f(z)) = d(x,y) + d(y,z)).
+
+We conclude that (d(x,z) ≤ d(x,y) + d(y,z)).
 ```
 </input-area>
 ```coq
@@ -157,6 +178,11 @@ Proof.
 ```coq
 Take x ∈ (X).
 
+We need to show that (d(x,x) = 0).
+It holds that (d(x, x) = dist_Y(f(x), f(x))).
+By (dist_reflexive Y) it holds that (dist_Y(f(x),f(x)) = 0).
+
+We conclude that (d(x,x) = 0).
 ```
 </input-area>
 ```coq
@@ -196,9 +222,11 @@ Proof.
 ```coq
 Take a ∈ (ℝ).
 Take b ∈ (ℝ).
+
 Either (a = b) or (a ≠ b).
 - Case (a = b).
   We conclude that (d(a,b) >= 0).
+
 - Case (a ≠ b).
   We conclude that (d(a,b) >= 0).
 ```
@@ -216,11 +244,12 @@ Proof.
 ```coq
 Take a ∈ (ℝ).
 Take b ∈ (ℝ).
+
 We need to show that (d(a,b) = 0 ⇒ a = b).
 Assume that (d(a,b) = 0).
 We argue by contradiction.
 Assume that (a ≠ b).
-It holds that (d(a,b) >= 0).
+It holds that (d(a,b) > 0).
 Contradiction.
 ```
 </input-area>
@@ -236,12 +265,14 @@ Proof.
 ```coq
 Take a ∈ (ℝ).
 Take b ∈ (ℝ).
+
 We need to show that (d(a,b) = d(b,a)).
 Either (a = b) or (a ≠ b).
 - Case (a = b).
   It holds that (d(a,b) = 0).
   It holds that (d(b,a) = 0).
   We conclude that (d(a,b) = d(b,a)).
+
 - Case (a ≠ b).
   It holds that (d(a,b) = 3).
   It holds that (d(b,a) = 3).
@@ -265,18 +296,21 @@ Proof.
 Take a ∈ (ℝ).
 Take b ∈ (ℝ).
 Take c ∈ (ℝ).
+
 We need to show that (d(a,c) <= d(a,b) + d(b,c)).
 Either (a=b) or (a≠b).
 - Case (a=b).
   It holds that (d(a,b) = 0).
   It holds that (d(a,c) <= d(a,b) + d(b,c)).
   We conclude that (d(a,c) <= d(a,b) + d(b,c)).
+
 - Case (a≠b).
   Either (c = a) or (c ≠ a).
   + Case (c = a).
     It holds that (d(a,c) = 0).
     It holds that (d(a,b) = 3).
     We conclude that (d(a,c) <= d(a,b) + d(b,c)).
+
   + Case (c ≠ a).
     Either (b=c) or (b≠c).
     -- Case (b = c).
@@ -284,6 +318,7 @@ Either (a=b) or (a≠b).
         It holds that (d(a,b) = 3).
         It holds that (d(b,c) = 0).
         We conclude that (d(a,c) <= d(a,b) + d(b,c)).
+
     -- Case (b ≠ c).
         It holds that (d(a,c) = 3).
         It holds that (d(a,b) = 3).
@@ -302,6 +337,7 @@ Proof.
 <input-area>
 ```coq
 Take a ∈ (ℝ).
+
 It holds that (a = a).
 We conclude that (d(a,a) = 0).
 ```
