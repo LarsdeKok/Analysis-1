@@ -276,13 +276,19 @@ Either (a=b) or (a≠b).
   + Case (c = a).
     It holds that (d(a,c) = 0).
     It holds that (d(a,b) = 3).
-    Assume that (d(b,c) >= 0).
     We conclude that (d(a,c) <= d(a,b) + d(b,c)).
   + Case (c ≠ a).
-    It holds that (d(a,c) = 3).
-    It holds that (d(a,b) = 3).
-    Assume that (d(b,c) >= 0).
-    We conclude that (d(a,c) <= d(a,b) + d(b,c)).
+    Either (b=c) or (b≠c).
+    -- Case (b = c).
+        It holds that (d(a,c) = 3).
+        It holds that (d(a,b) = 3).
+        It holds that (d(b,c) = 0).
+        We conclude that (d(a,c) <= d(a,b) + d(b,c)).
+    -- Case (b ≠ c).
+        It holds that (d(a,c) = 3).
+        It holds that (d(a,b) = 3).
+        It holds that (d(b,c) = 3).
+        We conclude that (d(a,c) <= d(a,b) + d(b,c)).
 ```
 </input-area>
 ```coq
@@ -296,8 +302,8 @@ Proof.
 <input-area>
 ```coq
 Take a ∈ (ℝ).
-Take b ∈ (ℝ).
-Either (a = b) or (a ≠ b).
+It holds that (a = a).
+We conclude that (d(a,a) = 0).
 ```
 </input-area>
 ```coq
