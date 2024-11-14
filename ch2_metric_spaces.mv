@@ -272,13 +272,16 @@ Either (a=b) or (a≠b).
   It holds that (d(a,c) <= d(a,b) + d(b,c)).
   We conclude that (d(a,c) <= d(a,b) + d(b,c)).
 - Case (a≠b).
-  It holds that (d(a,b) = 3).
   Either (c = a) or (c ≠ a).
   + Case (c = a).
-    It holds that (d(c,a) = 0).
+    It holds that (d(a,c) = 0).
+    It holds that (d(a,b) = 3).
+    Assume that (d(b,c) >= 0).
     We conclude that (d(a,c) <= d(a,b) + d(b,c)).
   + Case (c ≠ a).
-    It holds that (d(c,a) = 3).
+    It holds that (d(a,c) = 3).
+    It holds that (d(a,b) = 3).
+    Assume that (d(b,c) >= 0).
     We conclude that (d(a,c) <= d(a,b) + d(b,c)).
 ```
 </input-area>
