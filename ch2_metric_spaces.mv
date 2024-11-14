@@ -109,9 +109,9 @@ Proof.
 Take x ∈ (X).
 Take y ∈ (X).
 We need to show that (d(x,y) = 0 ⇒ x = y).
-Assume that (d(x,y) = 0).
-By (dist_non_degenerate Y) it holds that (d(x,y)=0 ⇒ x=y).
-We conclude that (d(x,y) = 0 ⇒ x=y).
+Assume that (d(x,y)=0).
+By (dist_non_degenerate Y) it holds that (x=y).
+We conclude that (d(x,y)=0⇒x=y).
 ```
 
 ```coq
@@ -237,7 +237,15 @@ Proof.
 Take a ∈ (ℝ).
 Take b ∈ (ℝ).
 We need to show that (d(a,b) = d(b,a)).
-
+Either (a = b) or (a ≠ b).
+- Case (a = b).
+  It holds that (d(a,b) = 0).
+  It holds that (d(b,a) = 0).
+  We conclude that (d(a,b) = d(b,a)).
+- Case (a ≠ b).
+  It holds that (d(a,b) = 3).
+  It holds that (d(b,a) = 3).
+  We conclude that (d(a,b) = d(b,a)).
 ```
 </input-area>
 ```coq
@@ -257,7 +265,24 @@ Proof.
 Take a ∈ (ℝ).
 Take b ∈ (ℝ).
 Take c ∈ (ℝ).
-
+We need to show that (d(a,c) <= d(a,b) + d(b,c)).
+Either (a=b) or (a≠b).
+- Case (a=b).
+  It holds that (d(a,b) = 0).
+  It holds that (d(a,c) <= d(a,b) + d(b,c)).
+  We conclude that (d(a,c) <= d(a,b) + d(b,c)).
+- Case (a≠b).
+  Either (c = a) or (c ≠ a).
+  + Case (c = a).
+    It holds that (d(a,c) = 0).
+    It holds that (d(a,b) = 3).
+    Assume that (d(b,c) >= 0).
+    We conclude that (d(a,c) <= d(a,b) + d(b,c)).
+  + Case (c ≠ a).
+    It holds that (d(a,c) = 3).
+    It holds that (d(a,b) = 3).
+    Assume that (d(b,c) >= 0).
+    We conclude that (d(a,c) <= d(a,b) + d(b,c)).
 ```
 </input-area>
 ```coq
