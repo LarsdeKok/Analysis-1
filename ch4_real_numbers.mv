@@ -72,9 +72,16 @@ Proof.
 <input-area>
 ```coq
 Take y ∈ (ℝ).
-We need to show that (y is the _supremum_ of A ∧ y ∈ A ⇨ y is the _maximum_ of A).
 Assume that (y is the _supremum_ of A ∧ y ∈ A).
-
+It holds that ((y is an _upper bound_ for A ∧ (∀L ∈ R, L is an _upper bound_ for A ⇒ y≤L)) ∧ y∈A).
+We need to show that (y ∈ A ∧ y is an _upper bound_ for A).
+We show both statements.
+* We need to show that (y ∈ A).
+  We conclude that (y ∈ A).
+* We need to show that (y is an _upper bound_ for A).
+  It suffices to show that (∀a∈A, y ≥ a).
+  Take a ∈ (A).
+  Since (y is the _supremum_ of A) we conclude that (y ≥ a).
 ```
 </input-area>
 ```coq
@@ -98,20 +105,15 @@ We show both statements.
   We conclude that (4 is an upper bound for [0,4)).
 * We need to show that (∀ε>0, ∃a∈[0,4), 4-ε<a).
   Take ε > 0.
-  Choose a := (4-(1/(ε+1))).
-  - We need to verify that (a ∈ [0,4)).
-    Since (ε > 0) it holds that (ε+1>1).
-    It holds that (1/(ε+1)>0).
-    It holds that (& a = 4-(1/(ε+1)) < 4).
-    Since (ε > 0) it holds that (1/(ε+1) > 0).
-    It holds that (1/(ε+1) < 1).
-    It holds that (& a = 4-(1/(ε+1)) ≥ 0).
-    Indeed, (a ∈ [0,4)).
-  - We need to show that(4-ε<a). 
-    It suffices to show that (4-ε < 4 - 1/(ε+1)).
-    It suffices to show that (ε > 1/(ε+1)).
-    Since (ε > 0) it holds that (ε+1 > 1).
-    It holds that (ε > 1 / (ε + 1)).
+  Either (ε ≥ 2) or (ε < 2).
+  - Case (ε ≥ 2).
+    Choose a := (3).
+    + Indeed, (a ∈ [0,4)).
+    + We conclude that (4 - ε < a).
+  - Case (ε < 2).
+    Choose a := (4 - ε/2).
+    + Indeed, (a ∈ [0,4)).
+    + We conclude that (4 - ε < a).
 ```
 </input-area>
 ```coq
@@ -125,7 +127,7 @@ Definition own_work : answer. exact
 ```
 <input-area>
 ```coq
-
+Yes.
 ```
 </input-area>
 ```coq

@@ -59,7 +59,11 @@ Proof.
 ```
 <input-area>
 ```coq
+We need to show that (a _converges to_ p).
 
+It suffices to show that (∀ε > 0, ∃ N1 ∈ ℕ, ∀ n ≥ N1, dist(a(n),p) < ε).
+Take ε > (0).
+By magic we conclude that (∃ N1 ∈ ℕ, ∀ n ≥ N1, dist(a(n), p) < ε).
 ```
 </input-area>
 ```coq
@@ -107,7 +111,23 @@ We show both directions.
 ```
 <input-area>
 ```coq
+By magic we conclude that (∃ N1 ∈ ℕ, ∀ n ≥ N1, dist(a_shift(n), p) < ε).
 
+- We need to show that
+    (a_shift _converges to_ p ⇒ a _converges to_ p).
+  Assume that (a_shift converges to p) (iii).
+  By (iii) it holds that
+    (∀ ε2 > 0, ∃ N3 ∈ ℕ, ∀ n ≥ N3, dist(a_shift(n), p) < ε2) (iv).
+  We need to show that (∀ ε > 0, ∃ N1 ∈ ℕ,
+    ∀ n ≥ N1, dist(a(n), p) < ε).
+  Take ε > 0.
+  Use ε2 := ε in (iv).
+  { Indeed, (ε > 0). }
+  It holds that (∃ N3 ∈ ℕ,
+      ∀ n ≥ N3, dist(a_shift(n), p) < ε).
+  Obtain such an N3.
+  We need to show that (∃ N1 ∈ ℕ, ∀ n ≥ N1, dist(a(n), p) < ε).
+Let N1 := max{N2,N3}.
 ```
 </input-area>
 ```coq
