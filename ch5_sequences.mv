@@ -63,7 +63,6 @@ We need to show that (a _converges to_ p).
 
 It suffices to show that (∀ε > 0, ∃ N1 ∈ ℕ, ∀ n ≥ N1, dist(a(n),p) < ε).
 Take ε > (0).
-By magic we conclude that (∃ N1 ∈ ℕ, ∀ n ≥ N1, dist(a(n), p) < ε).
 ```
 </input-area>
 ```coq
@@ -144,7 +143,7 @@ Definition own_work : answer. exact
 ```
 <input-area>
 ```coq
-
+Yes.
 ```
 </input-area>
 ```coq
