@@ -1,0 +1,143 @@
+# Real-valued sequences
+<hint title="📦 Import libraries (click to open/close)">
+```coq
+Set Default Goal Selector "!".
+
+Require Import Coq.Reals.Reals.
+Require Import Waterproof.Tactics.
+Require Import Waterproof.Notations.Common.
+Require Import Waterproof.Notations.Reals.
+Require Import Waterproof.Notations.Sets.
+Require Import Waterproof.Chains.
+Require Import Waterproof.Automation.
+Require Import Waterproof.Libs.Analysis.Sequences.
+
+Require Import Waterproof.Libs.Reals.
+
+Waterproof Enable Automation RealsAndIntegers.
+Waterproof Enable Automation Intuition.
+
+Open Scope R_scope.
+Open Scope subset_scope.
+
+Definition prop_5_2_2 := is_bounded_equivalence.
+Definition application_of_prop_5_2_2 (a : ℕ → ℝ) :=
+  iff_trans(_, _, (is_bounded_above a ∧ is_bounded_below a), prop_5_2_2 a).
+
+Notation "'max(' x , y )" := (Rmax x y)
+  (format "'max(' x ,  y ')'").
+Notation "'min(' x , y )" := (Rmin x y)
+  (format "'min(' x ,  y ')'").
+
+Inductive answer : Type :=
+| Yes : answer.
+
+Set Default Timeout 20.
+```
+</hint>
+## Exercise 6.8.1 (Proposition 6.1.4)
+<hint title="💡 Hint (click to open/close)">You might want to use that
+$$
+\text{for all } x, M ∈ ℝ, \text{ if } -M ≤ x \text{ and } x ≤ M \text{ then } |x| ≤ M
+$$and vice versa.
+</hint>
+```coq
+Section Prop_6_1_4.
+
+Variable a : ℕ → ℝ.
+
+Lemma exercise_6_8_1 :
+  (a is _bounded_)
+    ⇔
+  (a is _bounded above_ ∧ a is _bounded below_).
+Proof.
+By application_of_prop_5_2_2 it suffices to show that
+  ((∃ M > 0, ∀ n ∈ ℕ, | a(n) | ≤ M)
+    ⇔
+  (a is _bounded above_ ∧ a is _bounded below_)).
+```
+<input-area>
+```coq
+We show both directions.
+- We need to show that ((∃ M > 0, ∀ n ∈ ℕ, |a(n)| ≤ M) ⇨ a is _bounded above_ ∧ a is _bounded below_).
+  Assume that ((∃ M > 0, ∀ n ∈ ℕ, |a(n)| ≤ M)) (i).
+  We need to show that (a is _bounded above_ ∧ a is _bounded below_).
+  Expand the definition of bounded below.
+  It suffices to show that ((∃ M ∈ ℝ, ∀ n ∈ ℕ, a(n) ≤ M)∧(∃ m ∈ ℝ, ∀ n ∈ ℕ, m ≤ a(n))).
+  We show both statements.
+  + We need to show that ((∃ M ∈ ℝ, ∀ n ∈ ℕ, a(n) ≤ M)).
+    Choose M := Max{a}.
+    ++ Indeed, (M ∈ ℝ).
+    ++ Take n ∈ (ℕ).
+       We conclude that (a(n)≤M).
+  + We need to show that ((∃ m ∈ ℝ, ∀ n ∈ ℕ, m ≤ a(n))).
+- We need to show that ((a is _bounded above_ ∧ a is _bounded below_) ⇒ (∃M>0,∀n∈ℕ, |a(n)| ≤ M)).
+```
+</input-area>
+```coq
+Qed.
+
+End Prop_6_1_4.
+```
+## Exercise 6.8.2 (Proposition 6.6.2 item (i))
+```coq
+Section Prop_6_2_2_i.
+Variable a : ℕ → ℝ.
+Definition a_opp (n : ℕ) := - a(n).
+```
+
+```coq
+Lemma exercise_6_8_2 :
+  a _diverges to ∞_
+    ⇔
+  a_opp _diverges to -∞_.
+Proof.
+```
+<input-area>
+```coq
+We show both directions.
+- We need to show that (a _diverges to ∞_ ⇒ a_opp _diverges to -∞_).
+  We need to show that ((∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M) ⇒∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M).
+  Assume that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M) (i).
+  We need to show that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M).
+  Take M ∈ (ℝ).
+    Choose N1 := (0)%nat.
+    { Indeed, (N1 ∈ ℕ). }
+    We need to show that (∀ n≥N1, a_opp(n) < M).
+      Take n ≥ (N1).
+      It suffices to show that (-a(n) < M).
+      By (i) it holds that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M).
+      Since (a(n) > M) we conclude that (-a(n) < M).
+- We need to show that (a_opp _diverges to -∞_ ⇒ a _diverges to ∞_).
+  We need to show that ((∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M) ⇒ (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M)).
+  Assume that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M) (ii).
+  We need to show that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M).
+  Take M ∈ (ℝ).
+    Choose N1 := (0)%nat.
+    { Indeed, (N1 ∈ ℕ). }
+    We need to show that (∀ n ≥ N1, a(n) > M).
+      Take n ≥ (N1).
+      By (ii) it holds that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M).
+      Since (a_opp(n) < M) we conclude that (a(n) > M).
+```
+</input-area>
+```coq
+Qed.
+
+End Prop_6_2_2_i.
+```
+
+## Declaration of own work
+
+Please declare that the work above is your own work, by writing `Yes.` as an answer on the line below. In particular, this means that the proofs above are typed by yourself, and that you could give an explanation of the proof when asked.
+```coq
+Definition own_work : answer. exact
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+```
