@@ -97,17 +97,32 @@ Proof.
 ```coq
 We show both directions.
 - We need to show that (a _diverges to ∞_ ⇒ a_opp _diverges to -∞_).
-  We need to show that ((∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M) ⇒∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M).
+  We need to show that ((∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n1 ≥ N1, a(n1) > M) ⇒ (∀ M ∈ ℝ, ∃ N2 ∈ ℕ, ∀ n2 ≥ N2, a_opp(n2) < M)).
   Assume that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M) (i).
   We need to show that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M).
-  Take M ∈ (ℝ).
-    Choose N1 := (0)%nat.
-    { Indeed, (N1 ∈ ℕ). }
-    We need to show that (∀ n≥N1, a_opp(n) < M).
-      Take n ≥ (N1).
-      It suffices to show that (-a(n) < M).
-      By (i) it holds that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M).
-      Since (a(n) > M) we conclude that (-a(n) < M).
+
+  By (i) it holds that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n1 ≥ N1, a(n1) > M) (ii).
+    Use M := (0) in (ii).
+    { Indeed, (0 ∈ ℝ). }
+      It holds that (∃ N1 ∈ ℕ, ∀ n1 ≥ N1, a(n1) > 0) (iii).
+      Obtain N1 according to (iii).
+      It holds that (∀ n1 ≥ N1, a(n1) > 0) (iv).
+        Use n1:= (N1) in (iv).
+        { Indeed, (N1 ≥ N1)%nat. }
+        It holds that (a(N1) > 0) (v).
+
+          Take M ∈ (ℝ).
+          We need to show that (∃ N2 ∈ ℕ, ∀ n2 ≥ N2, a_opp(n2) < M).
+            Choose N2 := (N1).
+            { Indeed, (N2 ∈ ℕ). }
+            We need to show that (∀ n2 ≥ N1, a_opp(n2) < M).
+            Take n2 ≥ (N1).
+              We need to show that (a_opp(n2) < M).
+              It suffices to show that (- a(n2) < M).
+              It holds that (n2 ≥ N1).
+              
+        
+          
 - We need to show that (a_opp _diverges to -∞_ ⇒ a _diverges to ∞_).
   We need to show that ((∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M) ⇒ (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M)).
   Assume that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M) (ii).
