@@ -86,21 +86,36 @@ We show both directions.
         We conclude that (m0 ≤ a(n)).
 - We need to show that ((a is _bounded above_ ∧ a is _bounded below_) ⇒ (∃ M > 0, ∀ n ∈ ℕ, |a(n)| ≤ M)).
   Assume that ((a is _bounded above_) ∧ (a is _bounded below_)).
-  It holds that (∃ M ∈ ℝ, ∀ n ∈ ℕ, a(n) ≤ M) (i).
-  It holds that (∃ M ∈ ℝ, ∀ n ∈ ℕ, -a(n) ≥ -M) (ii).
-  We need to show (∃ M1 > 0, ∀ n ∈ ℕ, |a(n)| ≤ M1).
-  
-  Obtain M according to (i).
-  Choose M1 := (|M| + 1).
-  { Indeed, (M1 > 0). }
-    We need to show that (∀ n ∈ ℕ, |a(n)| ≤ M1).
+  It holds that (∃ M ∈ ℝ, ∀ n ∈ ℕ, a(n) ≤ M).
+    Obtain such a M.
+  It holds that (∃ m ∈ ℝ, ∀ n ∈ ℕ, m ≤ a(n)).
+    Obtain such a m.
+  We need to show (∃ M1 > 0, ∀ n ∈ ℕ, |a(n)| ≤ M1). 
+    Choose M1 := (|m|+|M|+1).
+    { Indeed, (M1 > 0). }
+      We need to show that (∀ n ∈ ℕ, |a(n)| ≤ M1).
       Take n ∈ (ℕ).
-      We need to show that (|a(n)| ≤ M1).
-      It suffices to show that ((-M1 < a(n))∧(M1 > a(n))).
-      We show both statements.
-      + We need to show that (-M1 < a(n)).
-        By (i) it holds that (a(n))
-
+        We need to show that (|a(n)| ≤ M1).
+        It holds that (& m ≤ a(n) ≤ M).
+        Either (m ≥ 0) or (m < 0).
+        + Case (m ≥ 0).
+          We need to show that (|a(n)| ≤ M1).
+          It holds that (a(n) ≥ 0).
+          It holds that (M1 > M).
+          We conclude that (|a(n)| ≤ M1).
+        + Case (m < 0).
+          We need to show that (|a(n)| ≤ M1).
+          
+          Either (|m| < M) or (|m| ≥ M).
+          ++ Case (|m| < M).
+            It holds that (M > 0).
+            It holds that (|a(n)| ≤ M).
+            It holds that (M1 > M).
+            We conclude that (|a(n)| ≤ M1).
+          ++ Case (|m| ≥ M).
+            It holds that (a(n) ≤ |m|).
+            It holds that (M1 > |m|).
+            We conclude that (|a(n)| ≤ M1).
 ```
 </input-area>
 ```coq
@@ -127,22 +142,34 @@ Proof.
 We show both directions.
 - We need to show that (a _diverges to ∞_ ⇒ a_opp _diverges to -∞_).
   We need to show that ((∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M) ⇒ (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M)).
-  Assume that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M).
+  Assume that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M) (i).
   We need to show that (∀ M ∈ ℝ, ∃ N2 ∈ ℕ, ∀ n ≥ N2, a_opp(n) < M).
-  It holds that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M) (i).
+  It suffices to show that (∀ M ∈ ℝ, ∃ N2 ∈ ℕ, ∀ n ≥ N2, -a(n) < M).
     Take M ∈ (ℝ).
-    We need to show that (∃ N2 ∈ ℕ, ∀ n ≥ N2, a_opp(n) < M).
-        By (i) it holds that (∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > M) (ii).
-        Obtain N1 according to (ii).
-        Choose N2 := (N1).
-         { Indeed, (N2 ∈ ℕ). }
-            We need to show that (∀ n ≥ N1, a_opp(n) < M).
-            Take n ≥ (N1).
-              We need to show that (a_opp(n) < M).
-              It suffices to show that (- a(n) < M).
-              It holds that (& n ≥ N1 = N2).
-              It holds that (a(n) > M).
-              Help
+      By (i) it holds that (∃ N1 ∈ ℕ, ∀ n ≥ N1, a(n) > -M).
+      Obtain such a N1.
+      Choose N2 := (N1).
+      { Indeed, (N2 ∈ ℕ). }
+        We need to show that (∀ n ≥ N2, -a(n) < M).
+        Take n ≥ (N2).
+          It holds that (a(n) > -M).
+          We conclude that (-a(n) < M).
+- We need to show that (a_opp _diverges to -∞_ ⇒ a _diverges to ∞_).
+  Assume that (a_opp _diverges to -∞_) (i).
+  We need to show that (a _diverges to ∞_).
+  It suffices to show that (∀ M ∈ ℝ, ∃ N2 ∈ ℕ, ∀ n ≥ N2, a(n) > M).
+  By (i) it holds that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, a_opp(n) < M).
+  It holds that (∀ M ∈ ℝ, ∃ N1 ∈ ℕ, ∀ n ≥ N1, -a(n) < -M).
+    Take M ∈ (ℝ).
+      It holds that (∃ N1 ∈ ℕ, ∀ n ≥ N1, -a(n) < -M).
+      Obtain such a N1.
+      Choose N2 := (N1).
+      { Indeed, (N2 ∈ ℕ). }
+        We need to show that (∀ n ≥ N2, a(n) > M).
+        Take n ≥ (N2).
+          We need to show that (a(n) > M).
+          It holds that (-a(n) < -M).
+          We conclude that (a(n) > M).
 ```
 </input-area>
 ```coq
