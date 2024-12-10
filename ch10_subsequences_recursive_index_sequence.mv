@@ -1,0 +1,75 @@
+# Construct index sequences
+<hint title="📦 Import libraries (click to open/close)">
+```coq
+Require Import Arith.Even.
+Require Import ZArith.ZArith.
+Require Import FunctionalExtensionality.
+
+Require Import Waterproof.Tactics.
+Require Import Waterproof.Notations.Common.
+Require Import Waterproof.Notations.Reals.
+Require Import Waterproof.Notations.Sets.
+Require Import Waterproof.Chains.
+Require Import Waterproof.Automation.
+Require Import Waterproof.Libs.Analysis.SequencesMetric.
+Require Import Waterproof.Libs.Analysis.SubsequencesMetric.
+Require Import Waterproof.Libs.Analysis.StrongInductionIndexSequence.
+
+Open Scope metric_scope.
+
+Waterproof Enable Automation RealsAndIntegers.
+Waterproof Enable Automation Intuition.
+
+Open Scope nat_scope.
+
+Inductive Color : Set :=
+| blue : Color
+| orange : Color.
+
+Inductive answer : Type :=
+| Yes : answer.
+(** *)
+(** *)
+
+```
+</hint>
+## Exercise 10.7.6
+
+```coq
+Section colors.
+Variable P : ℕ → Color.
+
+Parameter infinitely_many_blues :
+  ∀ k ∈ ℕ, ∃ m ≥ k, P(m) = blue.
+
+Lemma exercise_10_7_6 : ∃ n : (ℕ → ℕ),
+  (is_index_sequence n) ∧ (∀ k ∈ ℕ, P(n(k)) = blue).
+Proof.
+Define the index sequence n inductively.
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+```
+```coq
+End colors.
+```
+
+## Declaration of own work
+
+Please declare that the work above is your own work, by writing `Yes.` as an answer on the line below. In particular, this means that the proofs above are typed by yourself, and that you could give an explanation of the proof when asked.
+```coq
+Definition own_work : answer. exact
+```
+<input-area>
+```coq
+Yes.
+```
+</input-area>
+```coq
+Qed.
+```
