@@ -49,6 +49,19 @@ Define the index sequence n inductively.
 ```
 <input-area>
 ```coq
+We first define n_0.
+We need to show that (∃ n_0 ∈ ℕ, P(n_0) = blue).
+By (infinitely_many_blues) it holds that (∀ k ∈ ℕ, ∃ m ≥ k, P(m) = blue) (i).
+Use k := (0) in (i).
+{ Indeed, (0 ∈ ℕ). }
+It holds that (∃ m ≥ 0, P(m) = blue) (ii).
+Obtain m according to (ii).
+Choose n_0 := (m).
+{ Indeed, (n_0 ∈ ℕ). }
+We need to show that (P(n_0) = blue).
+Since (n_0 = m) we conclude that (P(n_0) = blue).
+Take k ∈ ℕ and assume n_0,...,n_k are defined.
+We need to show that ((∀ l ≤ k, P(n(l)) = blue) ⇒ (∀ l < k, n(l) < n(l + 1)) ⇒ ∃ n_kplus1 ∈ ℕ, P(n_kplus1) = blue ∧ n(k) < n_kplus1).
 
 ```
 </input-area>
