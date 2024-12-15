@@ -1,0 +1,96 @@
+# Point-set topology<hint title="📦 Import libraries (click to open/close)">
+```coq
+Set Default Goal Selector "!".
+
+Require Import Coq.Reals.Reals.
+Require Import Waterproof.Tactics.
+Require Import Waterproof.Notations.Common.
+Require Import Waterproof.Notations.Reals.
+Require Import Waterproof.Notations.Sets.
+Require Import Waterproof.Chains.
+Require Import Waterproof.Libs.Analysis.OpenAndClosed.
+Require Import Waterproof.Automation.
+
+Waterproof Enable Automation RealsAndIntegers.
+Waterproof Enable Automation Intuition.
+
+Open Scope R_scope.
+Open Scope subset_scope.
+
+Notation "'max(' x , y )" := (Rmax x y)
+  (format "'max(' x ,  y ')'").
+Notation "'min(' x , y )" := (Rmin x y)
+  (format "'min(' x ,  y ')'").
+
+Inductive answer : Type :=
+| Yes : answer.
+
+Set Default Timeout 20.
+```
+</hint><hint title="💡 Hint (click to open/close)">Recall that `x ∈ B(p,r)` is equivalent to `|x - p| < r` .
+</hint>
+## Exercise: prove that the interval $[0, 1)$ is not open
+
+**Hint:** Recall how to expand definitions. You can for instance use
+```
+Expand the definition of open.
+```
+to use the definition of open in one of the assumptions.
+
+**Hint:** Recall that you can use
+```
+We claim that (...).
+{
+  (* proof of claim here *)
+}
+```
+to make a claim and prove it.
+```coq
+Lemma not_open : ¬ ([0,1) is _open_).
+Proof.
+```
+<input-area>
+```coq
+It suffices to show that (¬ (∀ a, [0, 1) a ⇨ a is an _interior point_ of [0, 1))).
+Assume that (∀ a, [0, 1) a ⇒ a is an _interior point_ of [0, 1)).
+It holds that (∀ a, [0,1) a ⇒ a is an _interior point_ of [0, 1)) (i).
+Use a := (0) in (i).
+It holds that ([0, 1) 0 ⇨ 0 is an _interior point_ of [0, 1)).
+
+```
+</input-area>
+```coq
+Qed.
+```
+
+## Exercise: prove that the interval $[0, 1)$ is not closed.
+```coq
+Lemma not_closed : ¬ ([0,1) is _closed_).
+Proof.
+```
+<input-area>
+```coq
+We need to show that (¬[0,1) is _closed_).
+Assume that ([0,1) is _closed_).
+It holds that (ℝ\[0,1) is _open_).
+
+```
+</input-area>
+```coq
+Qed.
+```
+
+## Declaration of own work
+
+Please declare that the work above is your own work, by writing `Yes.` as an answer on the line below. In particular, this means that the proofs above are typed by yourself, and that you could give an explanation of the proof when asked.
+```coq
+Definition own_work : answer. exact
+```
+<input-area>
+```coq
+Yes.
+```
+</input-area>
+```coq
+Qed.
+```
