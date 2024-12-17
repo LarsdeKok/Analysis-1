@@ -51,24 +51,29 @@ Proof.
 ```
 <input-area>
 ```coq
-It suffices to show that (¬ (∀ a, [0, 1) a ⇨ a is an _interior point_ of [0, 1))).
-Assume that (∀ a, [0, 1) a ⇒ a is an _interior point_ of [0, 1)).
-It holds that (∀ a, [0,1) a ⇒ a is an _interior point_ of [0, 1)) (i).
+It suffices to show that (¬(∀ a ∈ [0,1), a is an _interior point_ of [0,1))).
+Assume that (∀ a ∈ [0,1), a is an _interior point_ of [0,1)).
+It holds that (∀ a ∈ [0, 1), ∃ r > 0, ∀ x ∈ B(a, r), x ∈ [0, 1)) (i).
 Use a := (0) in (i).
-It holds that ([0, 1) 0 ⇒ 0 is an _interior point_ of [0, 1)).
-It holds that (0 ∈ [0,1)).
-It holds that (0 is an _interior point_ of [0,1)).
-It holds that (∃ r > 0, ∀ x ∈ B(0, r), x ∈ [0, 1)) (ii).
-Obtain r according to (ii).
-It holds that (∀ x ∈ B(0,r), x ∈ [0,1)) (iii).
-Use x := (1) in (iii).
-{ We need to verify that (1 ∈ B(0, r)).
-  We need to show that (1 ∈ B(0, r)).
+{ Indeed, (0 ∈ [0,1)). }
+It holds that (∃ r > 0, ∀ x ∈ B(0, r), x ∈ [0, 1)) (iii).
+Obtain such a r.
+It holds that (∀ x ∈ B(0,r), x ∈ [0,1)) (ii).
+Use x := (0) in (ii).
+{ We need to verify that (0 ∈ B(0, r)).
+  It suffices to show that (|0 - 0| < r).
   It holds that (r > 0).
-  It suffices to show that (|1 - 0| < r).
-  We conclude that (|1 - 0| < r).
+  We conclude that (|0 - 0| < r).
 }
-It holds that (1 ∈ [0, 1)).
+It holds that (0 ∈ [0,1)).
+We claim that ((0 - (r/2)) ∈ B(0,r)).
+{
+  We need to show that ((0-(r/2)) ∈ B(0,r)).
+  It suffices to show that (|0 - (r/2) - 0| < r).
+  We conclude that (& |0 - (r/2) - 0| = r/2 < r).
+}
+It holds that ((0-(r/2)) ∈ B(0,r)).
+By (ii) it holds that ((0-(r/2)) ∈ [0,1)).
 Contradiction.
 ```
 </input-area>
@@ -83,25 +88,6 @@ Proof.
 ```
 <input-area>
 ```coq
-We need to show that (¬[0,1) is _closed_).
-Assume that ([0,1) is _closed_).
-It holds that (ℝ\[0,1) is _open_).
-It holds that (∀ a, (ℝ\[0, 1)) a ⇒ a is an _interior point_ of ℝ\[0, 1)) (i).
-Use a := (1) in (i).
-It holds that ((ℝ\[0, 1)) 1 ⇒ 1 is an _interior point_ of ℝ\[0, 1)).
-It holds that (1 ∈ (ℝ\[0,1))).
-It holds that (1 is an _interior point_ of ℝ\[0, 1)).
-It holds that (∃ r > 0, ∀ x ∈ B(1, r), x ∈ ℝ\[0, 1)) (ii).
-Obtain r according to (ii).
-It holds that (∀ x ∈ B(1,r), x ∈ ℝ\[0,1)) (iii).
-Use x := (1) in (iii).
-{ We need to verify that (1 ∈ B(1, r)).
-  It holds that (r > 0).
-  We need to show that (1 ∈ B(1, r)).
-  It suffices to show that (|1 - 1| < r).
-  We conclude that (|1 - 1| < r).
-}
-It holds that (1 ∈ ℝ\[0, 1)).
 
 ```
 </input-area>
