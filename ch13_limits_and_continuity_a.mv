@@ -41,7 +41,21 @@ Proof.
 `It suffices to show that
   (∀ ε > 0, ∃ δ > 0, ∀ x ∈ ℝ, 0 < |x - a| < δ ⇒ |x - a| < ε).`</hint><input-area>
 ```coq
-
+We need to show that (∀ a ∈ ℝ, f is _continuous_ in a).
+Take a ∈ (ℝ).
+We need to show that (f is _continuous_ in a).
+It suffices to show that (∀ ε > 0, ∃ δ > 0, ∀ x ∈ ℝ, 0 < |x - a| < δ ⇒ |x - a| < ε).
+Take ε > (0).
+We need to show that (∃ δ > 0, ∀ x ∈ ℝ, 0 < |x - a| < δ ⇒ |x - a| < ε).
+Choose δ := (ε/2).
+{ Indeed, (δ > 0). }
+  We need to show that (∀ x ∈ ℝ, 0 < |x - a| < δ ⇒ |x - a| < ε).
+  Take x ∈ (ℝ).
+  We need to show that (0 < |x - a| < δ ⇒ |x - a| < ε).
+  Assume that (0 < |x - a| < δ).
+    We need to show that (|x-a| < ε).
+    It holds that (& 0 < |x - a| < δ = ε/2 < ε).
+    We conclude that (|x-a| < ε).
 ```
 </input-area>
 ```coq
@@ -56,7 +70,7 @@ Definition own_work : answer. exact
 ```
 <input-area>
 ```coq
-
+Yes.
 ```
 </input-area>
 ```coq
